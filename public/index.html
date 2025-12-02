@@ -354,8 +354,8 @@
 			<div class="signup-box">
 				<div class="form-content" id="form-content">
 					<p class="signup-label">subscribe to our events</p>
-					<form class="input-group" id="signup-form">
-						<input type="email" class="email-input" placeholder="your@email.com" required />
+					<form class="input-group" id="signup-form" method="POST" action="/subscribe">
+						<input type="email" class="email-input" name="email" placeholder="your@email.com" required />
 						<button type="submit" class="submit-btn">count me in!</button>
 					</form>
 					<p class="footnote">no spam, pinky promise!</p>
@@ -369,10 +369,28 @@
 
 		<script>
 			// Form handling
-			document.getElementById('signup-form').addEventListener('submit', function (e) {
+			document.getElementById('signup-form').addEventListener('submit', async function (e) {
 				e.preventDefault();
-				document.getElementById('form-content').classList.add('hidden');
-				document.getElementById('success-message').classList.add('show');
+
+				const formData = new FormData(e.target);
+
+				try {
+					const response = await fetch('/subscribe', {
+						method: 'POST',
+						body: formData,
+					});
+
+					if (response.ok) {
+						document.getElementById('form-content').classList.add('hidden');
+						document.getElementById('success-message').classList.add('show');
+					} else {
+						const error = await response.json();
+						alert('Error: ' + (error.error || 'Failed to subscribe'));
+					}
+				} catch (error) {
+					console.error('Subscription error:', error);
+					alert('Failed to subscribe. Please try again.');
+				}
 			});
 
 			function randomBetween(min, max) {
