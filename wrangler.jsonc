@@ -8,8 +8,8 @@
 	"main": "src/index.ts",
 	"compatibility_date": "2025-12-02",
 	"observability": {
-		"enabled": true
-	}
+		"enabled": true,
+	},
 	/**
 	 * Smart Placement
 	 * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
@@ -34,7 +34,17 @@
 	 * Static Assets
 	 * https://developers.cloudflare.com/workers/static-assets/binding/
 	 */
-	// "assets": { "directory": "./public/", "binding": "ASSETS" }
+	"assets": {
+		"directory": "./public/",
+		"binding": "ASSETS",
+	},
+	"d1_databases": [
+		{
+			"binding": "meetupmeetup_db",
+			"database_name": "meetupmeetup-db",
+			"database_id": "c090b3d1-4885-40a8-858d-8c2a702078e7",
+		},
+	],
 	/**
 	 * Service Bindings (communicate between multiple Workers)
 	 * https://developers.cloudflare.com/workers/wrangler/configuration/#service-bindings

@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>meetup meetup</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<script src="https://cdn.usefathom.com/script.js" data-site="DFISWLUZ" defer></script>
+		<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Patrick+Hand&display=swap" rel="stylesheet" />
+		<style>
+			:root {
+				--ink: #2a2a2a;
+				--paper: #faf8f3;
+				--accent: #e85d4c;
+				--accent-hover: #d14a3a;
+				--scribble: #4a7c59;
+				--highlight: #f7e96d;
+			}
+
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			body {
+				font-family: 'Patrick Hand', cursive;
+				background-color: var(--paper);
+				min-height: 100vh;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				padding: 2rem;
+				position: relative;
+				overflow-x: hidden;
+			}
+
+			/* Paper texture overlay */
+			body::before {
+				content: '';
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+				background-repeat: repeat;
+				opacity: 0.18;
+				pointer-events: none;
+				z-index: 1;
+			}
+
+			/* Scattered doodles */
+			.doodle {
+				position: absolute;
+				opacity: 0.18;
+				pointer-events: none;
+				z-index: 0;
+				animation: wobble 5s ease-in-out infinite;
+			}
+
+			#doodles-container {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				pointer-events: none;
+				z-index: 0;
+			}
+
+			@keyframes wobble {
+				0%,
+				100% {
+					transform: rotate(-3deg) scale(1);
+				}
+				50% {
+					transform: rotate(3deg) scale(1.05);
+				}
+			}
+
+			.container {
+				position: relative;
+				z-index: 2;
+				text-align: center;
+			}
+
+			.logo {
+				font-family: 'Caveat', cursive;
+				font-size: clamp(3.5rem, 12vw, 5.5rem);
+				font-weight: 700;
+				color: var(--ink);
+				line-height: 1;
+				margin-bottom: 0.5rem;
+				position: relative;
+				display: inline-block;
+				animation: drawIn 0.5s ease-out;
+			}
+
+			.logo::after {
+				content: '';
+				position: absolute;
+				bottom: 5px;
+				left: -5%;
+				width: 110%;
+				height: 12px;
+				background: var(--highlight);
+				z-index: -1;
+				transform: rotate(-1deg) skewX(-5deg);
+				animation: highlightIn 0.5s ease-out 0.3s both;
+			}
+
+			@keyframes drawIn {
+				from {
+					opacity: 0;
+					transform: translateY(20px) rotate(-2deg);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0) rotate(0);
+				}
+			}
+
+			@keyframes highlightIn {
+				from {
+					transform: scaleX(0) rotate(-1deg) skewX(-5deg);
+				}
+				to {
+					transform: scaleX(1) rotate(-1deg) skewX(-5deg);
+				}
+			}
+
+			.tagline {
+				font-size: clamp(1.2rem, 4vw, 1.6rem);
+				color: var(--ink);
+				margin-bottom: 3rem;
+				position: relative;
+				animation: fadeUp 0.6s ease-out 0.2s both;
+			}
+
+			.tagline .arrow {
+				display: inline-block;
+				margin: 0 0.3rem;
+				animation: bounce 1s ease-in-out infinite;
+			}
+
+			@keyframes bounce {
+				0%,
+				100% {
+					transform: translateY(0);
+				}
+				50% {
+					transform: translateY(-5px);
+				}
+			}
+
+			@keyframes fadeUp {
+				from {
+					opacity: 0;
+					transform: translateY(15px);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+
+			.signup-box {
+				background: white;
+				padding: 1rem;
+				border-radius: 3px;
+				position: relative;
+				animation: fadeUp 0.3s ease-out 0.4s both;
+				/* Hand-drawn border effect */
+				box-shadow:
+					2px 2px 0 var(--ink),
+					4px 4px 0 rgba(0, 0, 0, 0.1);
+				border: 2px solid var(--ink);
+				transform: rotate(-0.5deg);
+			}
+
+			/* Scribble decoration on box */
+			.signup-box::before {
+				content: '✦';
+				position: absolute;
+				top: -15px;
+				right: 20px;
+				font-size: 1.5rem;
+				color: var(--accent);
+				animation: spin 8s linear infinite;
+			}
+
+			@keyframes spin {
+				from {
+					transform: rotate(0deg);
+				}
+				to {
+					transform: rotate(360deg);
+				}
+			}
+
+			.signup-label {
+				font-family: 'Caveat', cursive;
+				font-size: 1.4rem;
+				color: var(--scribble);
+				margin-bottom: 1rem;
+				transform: rotate(-1deg);
+			}
+
+			.input-group {
+				display: flex;
+				flex-direction: column;
+				gap: 1rem;
+			}
+
+			.email-input {
+				font-family: 'Patrick Hand', cursive;
+				font-size: 1.2rem;
+				padding: 0.9rem 1.2rem;
+				border: 2px dashed var(--ink);
+				border-radius: 4px;
+				background: var(--paper);
+				color: var(--ink);
+				outline: none;
+				transition: all 0.3s ease;
+			}
+
+			.email-input::placeholder {
+				color: #999;
+			}
+
+			.email-input:focus {
+				border-style: solid;
+				border-color: var(--scribble);
+				box-shadow: 3px 3px 0 var(--scribble);
+				transform: translate(-2px, -2px);
+			}
+
+			.submit-btn {
+				font-family: 'Caveat', cursive;
+				font-size: 1.5rem;
+				font-weight: 600;
+				padding: 0.8rem 2rem;
+				background: var(--accent);
+				color: white;
+				border: 2px solid var(--ink);
+				border-radius: 4px;
+				cursor: pointer;
+				position: relative;
+				transition: all 0.2s ease;
+				box-shadow: 3px 3px 0 var(--ink);
+			}
+
+			.submit-btn:hover {
+				background: var(--accent-hover);
+				transform: translate(-2px, -2px);
+				box-shadow: 5px 5px 0 var(--ink);
+			}
+
+			.submit-btn:active {
+				transform: translate(1px, 1px);
+				box-shadow: 1px 1px 0 var(--ink);
+			}
+
+			.footnote {
+				margin-top: 1.2rem;
+				font-size: 0.95rem;
+				color: #777;
+			}
+
+			.success-message {
+				display: none;
+				font-family: 'Caveat', cursive;
+				font-size: 1.6rem;
+				color: var(--scribble);
+				animation: popIn 0.4s ease-out;
+			}
+
+			@media (max-width: 700px) {
+				body {
+					padding: 0;
+					padding-top: 3rem;
+					min-height: inherit;
+				}
+
+				.logo {
+					margin-bottom: 0.75rem;
+				}
+
+				.tagline {
+					margin-bottom: 2rem;
+				}
+
+				.signup-box {
+					padding: 1rem 0.75rem;
+				}
+
+				.email-input {
+					font-size: 1rem;
+					padding: 1rem 0.9rem;
+				}
+
+				.submit-btn {
+					font-size: 1.3rem;
+					padding: 0.95rem 1.5rem;
+				}
+			}
+
+			.success-message.show {
+				display: block;
+			}
+
+			.form-content.hidden {
+				display: none;
+			}
+
+			@keyframes popIn {
+				0% {
+					transform: scale(0.8);
+					opacity: 0;
+				}
+				50% {
+					transform: scale(1.05);
+				}
+				100% {
+					transform: scale(1);
+					opacity: 1;
+				}
+			}
+
+			/* Decorative squiggles */
+			.squiggle {
+				position: absolute;
+				stroke: var(--scribble);
+				stroke-width: 2;
+				fill: none;
+				opacity: 0.3;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Container for randomly generated doodles -->
+		<div id="doodles-container"></div>
+
+		<div class="container">
+			<h1 class="logo">meetup meetup</h1>
+			<p class="tagline">
+				<span class="arrow">→</span> a meetup for meetup organizers
+				<span class="arrow">←</span>
+			</p>
+
+			<div class="signup-box">
+				<div class="form-content" id="form-content">
+					<p class="signup-label">subscribe to our events</p>
+					<form class="input-group" id="signup-form">
+						<input type="email" class="email-input" placeholder="your@email.com" required />
+						<button type="submit" class="submit-btn">count me in!</button>
+					</form>
+					<p class="footnote">no spam, pinky promise!</p>
+				</div>
+				<div class="success-message" id="success-message">
+					<p>you're on the list! 🎉</p>
+					<p style="font-size: 1.2rem; margin-top: 0.5rem">we'll be in touch soon</p>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			// Form handling
+			document.getElementById('signup-form').addEventListener('submit', function (e) {
+				e.preventDefault();
+				document.getElementById('form-content').classList.add('hidden');
+				document.getElementById('success-message').classList.add('show');
+			});
+
+			function randomBetween(min, max) {
+				return Math.random() * (max - min) + min;
+			}
+
+			// Doodle generation
+			const colors = ['#4a7c59', '#e85d4c', '#2a2a2a', '#f7e96d', '#7c5a4a'];
+			const container = document.getElementById('doodles-container');
+			const doodleCount = randomBetween(3, 9);
+
+			function generateSquiggle() {
+				const width = 80;
+				const height = 50;
+				const startX = 5;
+				const startY = randomBetween(15, 35);
+				const cp1x = randomBetween(15, 30);
+				const cp1y = randomBetween(5, 45);
+				const cp2x = randomBetween(50, 65);
+				const cp2y = randomBetween(5, 45);
+				const endX = 75;
+				const endY = randomBetween(15, 35);
+
+				return `<svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
+                <path d="M${startX} ${startY} C${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${endX} ${endY}"
+                      stroke="${colors[Math.floor(Math.random() * colors.length)]}"
+                      stroke-width="${randomBetween(2, 4)}"
+                      fill="none"
+                      stroke-linecap="round"/>
+            </svg>`;
+			}
+
+			function generateStar() {
+				const size = 50;
+				const points = Math.floor(randomBetween(4, 8));
+				const outerR = 20;
+				const innerR = randomBetween(8, 12);
+				const cx = 25;
+				const cy = 25;
+
+				let path = '';
+				for (let i = 0; i < points * 2; i++) {
+					const angle = (i * Math.PI) / points - Math.PI / 2;
+					const r = i % 2 === 0 ? outerR : innerR;
+					const x = cx + r * Math.cos(angle);
+					const y = cy + r * Math.sin(angle);
+					path += (i === 0 ? 'M' : 'L') + x.toFixed(1) + ' ' + y.toFixed(1) + ' ';
+				}
+				path += 'Z';
+
+				return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
+                <path d="${path}"
+                      stroke="${colors[Math.floor(Math.random() * colors.length)]}"
+                      stroke-width="2"
+                      fill="none"/>
+            </svg>`;
+			}
+
+			function generateWave() {
+				const width = 90;
+				const height = 40;
+				const y = 20;
+				const amp = randomBetween(8, 15);
+
+				return `<svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
+                <path d="M5 ${y} Q20 ${y - amp} 35 ${y} T65 ${y} T95 ${y}"
+                      stroke="${colors[Math.floor(Math.random() * colors.length)]}"
+                      stroke-width="${randomBetween(2, 3.5)}"
+                      fill="none"
+                      stroke-linecap="round"/>
+            </svg>`;
+			}
+
+			function generateSpiral() {
+				const size = 60;
+				const cx = 30,
+					cy = 30;
+				let path = `M${cx} ${cy}`;
+				const turns = randomBetween(2, 3.5);
+				const steps = 40;
+
+				for (let i = 1; i <= steps; i++) {
+					const angle = (i / steps) * turns * Math.PI * 2;
+					const r = (i / steps) * 18;
+					const x = cx + r * Math.cos(angle);
+					const y = cy + r * Math.sin(angle);
+					path += ` L${x.toFixed(1)} ${y.toFixed(1)}`;
+				}
+
+				return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
+                <path d="${path}"
+                      stroke="${colors[Math.floor(Math.random() * colors.length)]}"
+                      stroke-width="2"
+                      fill="none"
+                      stroke-linecap="round"/>
+            </svg>`;
+			}
+
+			const generators = [generateSquiggle, generateStar, generateWave, generateSpiral];
+
+			// Create doodles
+			for (let i = 0; i < doodleCount; i++) {
+				const doodle = document.createElement('div');
+				doodle.className = 'doodle';
+
+				// Random position avoiding center area where content is
+				let x, y;
+				const margin = 5;
+				const avoidCenter = true;
+
+				do {
+					x = randomBetween(margin, 100 - margin);
+					y = randomBetween(margin, 100 - margin);
+				} while (avoidCenter && x > 25 && x < 75 && y > 20 && y < 80);
+
+				doodle.style.left = x + '%';
+				doodle.style.top = y + '%';
+				doodle.style.animationDuration = randomBetween(4, 7) + 's';
+				doodle.style.animationDelay = randomBetween(0, 2) + 's';
+				if (Math.random() > 0.5) {
+					doodle.style.animationDirection = 'reverse';
+				}
+
+				// Pick a random generator
+				const generator = generators[Math.floor(Math.random() * generators.length)];
+				doodle.innerHTML = generator();
+
+				container.appendChild(doodle);
+			}
+		</script>
+	</body>
+</html>
