@@ -1,5 +1,4 @@
-import { EmailMessage } from 'cloudflare:email';
-import { createMimeMessage } from 'mimetext';
+import { Resend } from 'resend';
 
 export default {
 	async fetch(request, env, ctx): Promise<Response> {
@@ -27,12 +26,17 @@ export default {
 					});
 				}
 
-				// Idempotent insert using INSERT OR IGNORE
-				const result = await env.DB.prepare('INSERT OR IGNORE INTO subscribers (email) VALUES (?)').bind(email).run();
+				// Add contact to Resend
+				const resend = new Resend(env.RESEND_API_KEY);
+				let resp = await resend.contacts.create({ email });
 
-				// If a row was inserted (changes > 0), send notification email
-				if (result.meta.changes > 0) {
-					await reportSubscriber(env, email);
+				// check resp.error
+				if (resp.error) {
+					console.error('Resend API error:', resp.error);
+					return new Response(JSON.stringify({ error: 'Failed to subscribe' }), {
+						status: 500,
+						headers: { 'Content-Type': 'application/json' },
+					});
 				}
 
 				return new Response(JSON.stringify({ success: true }), {
@@ -52,17 +56,3 @@ export default {
 		return new Response('Not Found', { status: 404 });
 	},
 } satisfies ExportedHandler<Env>;
-
-async function reportSubscriber(env: Env, email: String) {
-	const msg = createMimeMessage();
-	msg.setSender({ name: 'Meetup Meetup', addr: 'hello@meetupmeetup.com' });
-	msg.setRecipient('hello@meetupmeetup.com');
-	msg.setSubject('New meetupmeetup.com subscriber');
-	msg.addMessage({
-		contentType: 'text/plain',
-		data: `New subscriber: ${email}`,
-	});
-
-	var message = new EmailMessage('hello@meetupmeetup.com', 'hello@meetupmeetup.com', msg.asRaw());
-	await env.EMAIL.send(message);
-}
