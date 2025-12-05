@@ -4,6 +4,34 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>meetup meetup</title>
+		<meta
+			name="description"
+			content="A meetup for meetup organizers based in Vancouver. Connect with fellow community builders and event organizers."
+		/>
+		<link
+			rel="icon"
+			href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔁</text></svg>"
+		/>
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://meetupmeetup.com/" />
+		<meta property="og:title" content="meetup meetup" />
+		<meta
+			property="og:description"
+			content="A meetup for meetup organizers based in Vancouver. Connect with fellow community builders and event organizers."
+		/>
+		<meta property="og:site_name" content="meetup meetup" />
+
+		<!-- Twitter -->
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:url" content="https://meetupmeetup.com/" />
+		<meta name="twitter:title" content="meetup meetup" />
+		<meta
+			name="twitter:description"
+			content="A meetup for meetup organizers based in Vancouver. Connect with fellow community builders and event organizers."
+		/>
+
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<script src="https://cdn.usefathom.com/script.js" data-site="DFISWLUZ" defer></script>
@@ -135,9 +163,9 @@
 			.tagline {
 				font-size: clamp(1.2rem, 4vw, 1.6rem);
 				color: var(--ink);
-				margin-bottom: 3rem;
 				position: relative;
 				animation: fadeUp 0.6s ease-out 0.2s both;
+				margin-bottom: 0.5rem;
 			}
 
 			.tagline .arrow {
@@ -170,6 +198,7 @@
 			.signup-box {
 				background: white;
 				padding: 1rem;
+				margin-top: 2rem;
 				border-radius: 3px;
 				position: relative;
 				animation: fadeUp 0.3s ease-out 0.4s both;
@@ -289,11 +318,8 @@
 					margin-bottom: 0.75rem;
 				}
 
-				.tagline {
-					margin-bottom: 2rem;
-				}
-
 				.signup-box {
+					margin-top: 2rem;
 					padding: 1rem 0.75rem;
 				}
 
@@ -346,15 +372,13 @@
 
 		<div class="container">
 			<h1 class="logo">meetup meetup</h1>
-			<p class="tagline">
-				<span class="arrow">→</span> a meetup for meetup organizers based in vancouver
-				<span class="arrow">←</span>
-			</p>
+			<p class="tagline"><span class="arrow">→</span> a meetup for meetup organizers <span class="arrow">←</span></p>
+			<p class="tagline">(based in Vancouver)</p>
 
 			<div class="signup-box">
 				<div class="form-content" id="form-content">
 					<p class="signup-label">subscribe to our events</p>
-					<form class="input-group" id="signup-form" method="POST" action="/subscribe">
+					<form class="input-group" id="signup-form">
 						<input type="email" class="email-input" name="email" placeholder="your@email.com" required />
 						<button type="submit" class="submit-btn">count me in!</button>
 					</form>
@@ -371,13 +395,13 @@
 			// Form handling
 			document.getElementById('signup-form').addEventListener('submit', async function (e) {
 				e.preventDefault();
-
-				const formData = new FormData(e.target);
+				const email = e.target.email.value;
 
 				try {
-					const response = await fetch('/subscribe', {
+					const response = await fetch('https://joyful.to/api/embed/subscribe/meetupmeetup/meetupmeetups-newsletter', {
 						method: 'POST',
-						body: formData,
+						headers: { 'Content-Type': 'application/json' },
+						body: JSON.stringify({ email }),
 					});
 
 					if (response.ok) {

@@ -5,8 +5,7 @@
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"name": "meetupmeetup-com",
-	"main": "src/index.ts",
-	"compatibility_date": "2025-12-02",
+	"compatibility_date": "2025-11-25",
 	"observability": {
 		"enabled": true,
 	},
@@ -36,7 +35,6 @@
 	 */
 	"assets": {
 		"directory": "./public/",
-		"binding": "ASSETS",
 	},
 	/**
 	 * Service Bindings (communicate between multiple Workers)
