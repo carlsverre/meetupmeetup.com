@@ -307,6 +307,18 @@
 				animation: popIn 0.4s ease-out;
 			}
 
+			.error-message {
+				display: none;
+				font-family: 'Caveat', cursive;
+				font-size: 1.6rem;
+				color: red;
+				margin-top: 0.5rem;
+			}
+
+			.error-message.show {
+				display: block;
+			}
+
 			@media (max-width: 700px) {
 				body {
 					padding: 0;
@@ -386,34 +398,52 @@
 				</div>
 				<div class="success-message" id="success-message">
 					<p>you're on the list! 🎉</p>
-					<p style="font-size: 1.2rem; margin-top: 0.5rem">we'll be in touch soon</p>
+					<p style="font-size: 1.2rem; margin-top: 0.5rem">check your email to confirm your subscription</p>
 				</div>
+				<p class="error-message" id="error-message"></p>
 			</div>
 		</div>
 
 		<script>
+			function showError(message) {
+				document.getElementById('form-content').classList.add('hidden');
+				const errorEl = document.getElementById('error-message');
+				errorEl.textContent = message;
+				errorEl.classList.add('show');
+			}
+
+			async function subscribe(email) {
+				if (window.location.hash === '#test-success') {
+					return { ok: true };
+				} else if (window.location.hash === '#test-error') {
+					return { ok: false, json: async () => ({ error: 'Test error message' }) };
+				}
+				return fetch('https://joyful.to/api/embed/subscribe/mio7hpofv2u9vji1vab', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({ email }),
+				});
+			}
+
 			// Form handling
 			document.getElementById('signup-form').addEventListener('submit', async function (e) {
 				e.preventDefault();
 				const email = e.target.email.value;
 
 				try {
-					const response = await fetch('https://joyful.to/api/embed/subscribe/mio7hpofv2u9vji1vab', {
-						method: 'POST',
-						headers: { 'Content-Type': 'application/json' },
-						body: JSON.stringify({ email }),
-					});
+					const response = await subscribe(email);
 
 					if (response.ok) {
 						document.getElementById('form-content').classList.add('hidden');
 						document.getElementById('success-message').classList.add('show');
+						document.getElementById('error-message').classList.remove('show');
 					} else {
 						const error = await response.json();
-						alert('Error: ' + (error.error || 'Failed to subscribe'));
+						showError(error.error || 'Failed to subscribe');
 					}
 				} catch (error) {
 					console.error('Subscription error:', error);
-					alert('Failed to subscribe. Please try again.');
+					showError('Failed to subscribe. Please try again.');
 				}
 			});
 
