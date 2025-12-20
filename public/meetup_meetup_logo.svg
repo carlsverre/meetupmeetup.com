@@ -1,0 +1,10 @@
+<svg width="500" height="500" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="500" height="500" fill="#201E1E"/>
+<rect x="170.099" y="99.8995" width="211" height="211" transform="rotate(45 170.099 99.8995)" fill="#FE992F" stroke="white" stroke-width="14"/>
+<rect x="329.099" y="100.899" width="211" height="211" transform="rotate(45 329.099 100.899)" fill="#04A5A5" stroke="white" stroke-width="14"/>
+<mask id="path-3-inside-1_1_2" fill="white">
+<path d="M170 249.903L249.903 170L329.806 249.903L249.903 329.806L170 249.903Z"/>
+</mask>
+<path d="M170 249.903L249.903 170L329.806 249.903L249.903 329.806L170 249.903Z" fill="#03746F"/>
+<path d="M170 249.903L160.101 240.004L150.201 249.903L160.101 259.803L170 249.903ZM170 249.903L179.899 259.803L259.803 179.9L249.903 170L240.004 160.101L160.101 240.004L170 249.903ZM249.903 329.806L259.803 319.907L179.899 240.004L170 249.903L160.101 259.803L240.004 339.706L249.903 329.806Z" fill="white" mask="url(#path-3-inside-1_1_2)"/>
+</svg>
