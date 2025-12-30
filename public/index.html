@@ -385,6 +385,57 @@
 				fill: none;
 				opacity: 0.3;
 			}
+
+			/* Calendar box */
+			.calendar-box {
+				background: white;
+				padding: 1.5rem;
+				margin-top: 2.5rem;
+				border-radius: 3px;
+				position: relative;
+				animation: fadeUp 0.3s ease-out 0.6s both;
+				box-shadow:
+					2px 2px 0 var(--ink),
+					4px 4px 0 rgba(0, 0, 0, 0.1);
+				border: 2px solid var(--ink);
+				transform: rotate(0.5deg);
+			}
+
+			.calendar-box::before {
+				content: '📅';
+				position: absolute;
+				top: -15px;
+				left: 20px;
+				font-size: 1.5rem;
+				animation: bounce 2s ease-in-out infinite;
+			}
+
+			.calendar-label {
+				font-family: 'Caveat', cursive;
+				font-size: 1.6rem;
+				color: var(--scribble);
+				margin-bottom: 1rem;
+				transform: rotate(-0.5deg);
+			}
+
+			.calendar-box iframe {
+				width: 100%;
+				max-width: 600px;
+				height: 450px;
+				border: 1px solid #bfcbda88;
+				border-radius: 4px;
+			}
+
+			@media (max-width: 700px) {
+				.calendar-box {
+					margin-top: 2rem;
+					padding: 1rem 0.75rem;
+				}
+
+				.calendar-box iframe {
+					height: 400px;
+				}
+			}
 		</style>
 	</head>
 	<body>
@@ -410,6 +461,20 @@
 					<p style="font-size: 1.2rem; margin-top: 0.5rem">check your email to confirm your subscription</p>
 				</div>
 				<p class="error-message" id="error-message"></p>
+			</div>
+
+			<div class="calendar-box">
+				<p class="calendar-label">upcoming events</p>
+				<iframe
+					src="https://luma.com/embed/calendar/cal-LE2YzuOGNiYey6u/events"
+					width="600"
+					height="450"
+					frameborder="0"
+					style="border: 1px solid #bfcbda88; border-radius: 4px;"
+					allowfullscreen=""
+					aria-hidden="false"
+					tabindex="0"
+				></iframe>
 			</div>
 		</div>
 
