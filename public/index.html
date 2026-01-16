@@ -435,6 +435,50 @@
 					height: 300px;
 				}
 			}
+
+			.coc-link {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4rem;
+				margin-top: 2rem;
+				font-family: 'Caveat', cursive;
+				font-size: 1.3rem;
+				color: var(--ink);
+				text-decoration: none;
+				padding: 0.5rem 1rem;
+				background: var(--paper);
+				border: 2px dashed var(--scribble);
+				border-radius: 4px;
+				position: relative;
+				transition: all 0.2s ease;
+				animation: fadeUp 0.3s ease-out 0.8s both;
+				transform: rotate(0.5deg);
+			}
+
+			.coc-link::before {
+				content: '📜';
+				font-size: 1rem;
+			}
+
+			.coc-link::after {
+				content: '→';
+				font-size: 1.1rem;
+				color: var(--scribble);
+				transition: transform 0.2s ease;
+			}
+
+			.coc-link:hover {
+				border-style: solid;
+				border-color: var(--accent);
+				background: white;
+				box-shadow: 2px 2px 0 var(--accent);
+				transform: rotate(0.5deg) translate(-1px, -1px);
+			}
+
+			.coc-link:hover::after {
+				transform: translateX(3px);
+				color: var(--accent);
+			}
 		</style>
 	</head>
 	<body>
@@ -472,6 +516,8 @@
 					tabindex="0"
 				></iframe>
 			</div>
+
+			<a href="/code-of-conduct" class="coc-link">code of conduct</a>
 		</div>
 
 		<script>

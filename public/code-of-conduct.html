@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Code of Conduct - meetup meetup</title>
+		<meta
+			name="description"
+			content="Code of conduct for Meetup Meetup events. Our principles for creating a welcoming, thoughtful, and productive space."
+		/>
+		<!-- Favicon -->
+		<link rel="icon" type="image/svg+xml" href="/meetup_meetup_logo.svg" />
+		<link rel="icon" type="image/png" sizes="192x192" href="/meetup_meetup_logo@2x.png" />
+		<link rel="apple-touch-icon" href="/meetup_meetup_logo@2x.png" />
+
+		<!-- Theme colors for mobile browsers -->
+		<meta name="theme-color" content="#faf8f3" />
+		<meta name="msapplication-TileColor" content="#faf8f3" />
+		<meta name="msapplication-TileImage" content="/meetup_meetup_logo@2x.png" />
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://meetupmeetup.com/code-of-conduct" />
+		<meta property="og:title" content="Code of Conduct - meetup meetup" />
+		<meta
+			property="og:description"
+			content="Code of conduct for Meetup Meetup events. Our principles for creating a welcoming, thoughtful, and productive space."
+		/>
+		<meta property="og:site_name" content="meetup meetup" />
+		<meta property="og:image" content="https://meetupmeetup.com/meetup_meetup_logo@2x.png" />
+
+		<!-- Twitter -->
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:url" content="https://meetupmeetup.com/code-of-conduct" />
+		<meta name="twitter:title" content="Code of Conduct - meetup meetup" />
+		<meta
+			name="twitter:description"
+			content="Code of conduct for Meetup Meetup events. Our principles for creating a welcoming, thoughtful, and productive space."
+		/>
+		<meta name="twitter:image" content="https://meetupmeetup.com/meetup_meetup_logo@2x.png" />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<script src="https://cdn.usefathom.com/script.js" data-site="DFISWLUZ" defer></script>
+		<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Patrick+Hand&display=swap" rel="stylesheet" />
+		<style>
+			:root {
+				--ink: #2a2a2a;
+				--paper: #faf8f3;
+				--accent: #e85d4c;
+				--accent-hover: #d14a3a;
+				--scribble: #4a7c59;
+				--highlight: #f7e96d;
+			}
+
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			body {
+				font-family: 'Patrick Hand', cursive;
+				background-color: var(--paper);
+				min-height: 100vh;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				padding: 2rem;
+				position: relative;
+				overflow-x: hidden;
+			}
+
+			/* Paper texture overlay */
+			body::before {
+				content: '';
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+				background-repeat: repeat;
+				opacity: 0.18;
+				pointer-events: none;
+				z-index: 1;
+			}
+
+			.container {
+				position: relative;
+				z-index: 2;
+				max-width: 700px;
+				width: 100%;
+			}
+
+			.back-link {
+				display: inline-block;
+				font-family: 'Caveat', cursive;
+				font-size: 1.3rem;
+				color: var(--scribble);
+				text-decoration: none;
+				margin-bottom: 1.5rem;
+				transition: color 0.2s ease;
+			}
+
+			.back-link:hover {
+				color: var(--accent);
+			}
+
+			.logo {
+				font-family: 'Caveat', cursive;
+				font-size: clamp(2.5rem, 8vw, 3.5rem);
+				font-weight: 700;
+				color: var(--ink);
+				line-height: 1;
+				margin-bottom: 0.5rem;
+				position: relative;
+				display: inline-block;
+				text-decoration: none;
+			}
+
+			.logo::after {
+				content: '';
+				position: absolute;
+				bottom: 3px;
+				left: -5%;
+				width: 110%;
+				height: 10px;
+				background: var(--highlight);
+				z-index: -1;
+				transform: rotate(-1deg) skewX(-5deg);
+			}
+
+			.page-title {
+				font-family: 'Caveat', cursive;
+				font-size: clamp(1.8rem, 5vw, 2.2rem);
+				color: var(--scribble);
+				margin-bottom: 2rem;
+			}
+
+			.content-box {
+				background: white;
+				padding: 2rem;
+				border-radius: 3px;
+				position: relative;
+				box-shadow:
+					2px 2px 0 var(--ink),
+					4px 4px 0 rgba(0, 0, 0, 0.1);
+				border: 2px solid var(--ink);
+				transform: rotate(-0.3deg);
+			}
+
+			.intro {
+				font-size: 1.25rem;
+				line-height: 1.6;
+				color: var(--ink);
+				margin-bottom: 1.5rem;
+			}
+
+			.enforcement {
+				font-size: 1.1rem;
+				line-height: 1.6;
+				color: #555;
+				margin-bottom: 2rem;
+				padding-bottom: 1.5rem;
+				border-bottom: 2px dashed var(--ink);
+			}
+
+			.section-title {
+				font-family: 'Caveat', cursive;
+				font-size: 1.8rem;
+				color: var(--scribble);
+				margin-top: 1.5rem;
+				margin-bottom: 1rem;
+			}
+
+			.tldr-list {
+				list-style: none;
+				padding: 0;
+				margin-bottom: 1.5rem;
+			}
+
+			.tldr-list li {
+				font-size: 1.2rem;
+				color: var(--ink);
+				padding: 0.5rem 0;
+				padding-left: 1.5rem;
+				position: relative;
+			}
+
+			.tldr-list li::before {
+				content: '✓';
+				position: absolute;
+				left: 0;
+				color: var(--scribble);
+				font-weight: bold;
+			}
+
+			.principle-title {
+				font-family: 'Caveat', cursive;
+				font-size: 1.4rem;
+				font-weight: 600;
+				color: var(--ink);
+				margin-top: 1.5rem;
+				margin-bottom: 0.5rem;
+			}
+
+			.principle-text {
+				font-size: 1.15rem;
+				line-height: 1.6;
+				color: #444;
+				margin-bottom: 0.5rem;
+			}
+
+			.principle-list {
+				list-style: none;
+				padding: 0;
+				margin: 0.5rem 0;
+			}
+
+			.principle-list li {
+				font-size: 1.1rem;
+				color: #444;
+				padding: 0.3rem 0;
+				padding-left: 1.2rem;
+				position: relative;
+				line-height: 1.5;
+			}
+
+			.principle-list li::before {
+				content: '•';
+				position: absolute;
+				left: 0;
+				color: var(--accent);
+			}
+
+			@media (max-width: 700px) {
+				body {
+					padding: 1.5rem 1rem;
+				}
+
+				.content-box {
+					padding: 1.5rem 1rem;
+				}
+
+				.intro {
+					font-size: 1.15rem;
+				}
+
+				.enforcement {
+					font-size: 1.05rem;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<a href="/" class="back-link">← back to home</a>
+			<h1><a href="/" class="logo">meetup meetup</a></h1>
+			<h2 class="page-title">Code of Conduct</h2>
+
+			<div class="content-box">
+				<p class="intro">
+					<strong>Meetup Meetup</strong> is a space for meetup organizers to connect, share experiences, and learn from each other.
+					Our events are social and collaborative, and we aim to keep them welcoming, thoughtful, and productive for everyone.
+				</p>
+
+				<p class="enforcement">
+					If a host determines that this code of conduct has been breached, we may take appropriate action. This can include a
+					private conversation, a warning, or asking someone to leave or not attend future events. If you experience or witness an
+					issue, please talk to a host. We will respect your privacy.
+				</p>
+
+				<h3 class="section-title">TL;DR</h3>
+				<ul class="tldr-list">
+					<li>Be kind, collaborative, and friendly.</li>
+					<li>Respect people, boundaries, and the space.</li>
+					<li>Follow session guidelines and host facilitation.</li>
+					<li>Ask before self-promoting.</li>
+				</ul>
+
+				<h3 class="section-title">Our principles</h3>
+
+				<h4 class="principle-title">Shared responsibility for the experience</h4>
+				<p class="principle-text">
+					Everyone plays a role in making Meetup Meetup a positive experience. Please contribute constructively, be mindful of
+					others, and help create a welcoming and supportive environment.
+				</p>
+
+				<h4 class="principle-title">Respect each other</h4>
+				<p class="principle-text">
+					Meetup organizers come from different backgrounds, communities, and experiences. Treat everyone with respect. Harassment,
+					discrimination, or any form of aggressive behavior is not acceptable.
+				</p>
+
+				<h4 class="principle-title">Respect boundaries</h4>
+				<ul class="principle-list">
+					<li>If someone does not want to engage, respect that.</li>
+					<li>If conversation or outreach is not reciprocated, back off.</li>
+					<li>This applies to professional, platonic, and romantic interactions.</li>
+				</ul>
+
+				<h4 class="principle-title">Respect the space</h4>
+				<ul class="principle-list">
+					<li>Clean up after yourself.</li>
+					<li>No theft or damage to property.</li>
+					<li>Follow any venue-specific rules.</li>
+				</ul>
+
+				<h4 class="principle-title">Follow session guidelines</h4>
+				<ul class="principle-list">
+					<li>Be mindful of talks, discussions, and collaborative activities.</li>
+					<li>Avoid interrupting speakers or dominating conversations.</li>
+					<li>Keep discussions on topic when the session calls for it.</li>
+					<li>Self-promotion is welcome only when explicitly invited or approved by a host.</li>
+				</ul>
+
+				<h4 class="principle-title">Talk to the hosts</h4>
+				<p class="principle-text">
+					If something feels off, uncomfortable, or unclear, let a host know. We care about keeping <strong>Meetup Meetup</strong> a
+					supportive space and will handle concerns discreetly.
+				</p>
+			</div>
+		</div>
+	</body>
+</html>

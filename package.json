@@ -12,11 +12,11 @@
 		"@cloudflare/vitest-pool-workers": "^0.8.71",
 		"typescript": "^5.9.3",
 		"vitest": "~3.2.4",
-		"wrangler": "^4.56.0"
+		"wrangler": "^4.59.2"
 	},
 	"dependencies": {
-		"@types/node": "^24.10.4",
+		"@types/node": "^24.10.9",
 		"mimetext": "^3.0.27",
-		"resend": "^6.6.0"
+		"resend": "^6.7.0"
 	}
 }
